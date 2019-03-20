@@ -1,0 +1,29 @@
+{
+  "name": "stat-ui-tests",
+  "version": "0.0.1",
+  "description": "UI Tests for Stat Dashboard Web Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/germanmummaNG/stat-ui-tests.git"
+  },
+  "keywords": [
+    "automation",
+    "statistics",
+    "dashboard",
+    "nightwatchjs",
+    "ui-automation"
+  ],
+  "author": "German Mumma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/germanmummaNG/stat-ui-tests/issues"
+  },
+  "homepage": "https://github.com/germanmummaNG/stat-ui-tests#readme",
+  "dependencies": {
+    "nightwatch-html-reporter": "^2.0.6"
+  }
+}
