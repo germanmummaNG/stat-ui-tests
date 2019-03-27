@@ -45,6 +45,7 @@ public class BaseTest {
 
     private SafariDriver getConfiguredSafariDriver() {
         SafariDriver driver = new SafariDriver();
+
         driver.manage().window().maximize();
         return driver;
     }
@@ -55,6 +56,7 @@ public class BaseTest {
     }
 
     private EdgeDriver getConfiguredEdgeDriver() {
+        WebDriverManager.edgedriver().setup();
         EdgeDriver driver = new EdgeDriver();
         driver.manage().window().maximize();
         return driver;
