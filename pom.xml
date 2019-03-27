@@ -13,6 +13,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <allure.version>2.10.0</allure.version>
         <aspectj.version>1.9.2</aspectj.version>
+        <browser/>
     </properties>
 
     <dependencies>
@@ -28,6 +29,11 @@
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
             <version>5.2.2</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>3.3.0</version>
         </dependency>
         <!-- Assertion -->
         <dependency>

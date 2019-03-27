@@ -2,3 +2,4 @@
 .allure/
 target/
 allure-results/
+build/

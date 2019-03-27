@@ -5,6 +5,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import stat.juhtimislauad.ng.BaseTest;
 import stat.juhtimislauad.ng.ListenerClass;
 import stat.juhtimislauad.ng.pages.HomePage;
 
@@ -12,7 +13,7 @@ import static com.google.common.truth.Truth.assertThat;
 import static stat.juhtimislauad.ng.pages.DashboardSelectionPage.getDashboardSelectionPage;
 
 @Listeners({ListenerClass.class})
-public class DashboardSelectionTests {
+public class DashboardSelectionTests extends BaseTest {
 
     private static final String DEV_USERS_NAME = "lokaalne";
     private static final String DASHBOARD_TITLE_TURISM = "Turism";
