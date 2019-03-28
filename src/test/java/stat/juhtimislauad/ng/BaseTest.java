@@ -6,9 +6,14 @@ import io.qameta.allure.selenide.AllureSelenide;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.safari.SafariOptions;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
@@ -24,64 +29,72 @@ public class BaseTest {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
         if (browserType != null) {
             if (browserType.equalsIgnoreCase("chrome")) {
-                setWebDriver(getConfiguredChromeDriver());
+                configureChromeDriver();
             } else if (browserType.equalsIgnoreCase("firefox")) {
-                setWebDriver(getConfiguredFirefoxDriver());
+                configureFirefoxDriver();
             } else if (browserType.equalsIgnoreCase("ie")) {
-                setWebDriver(getConfiguredIEDriver());
+                configureIEDriver();
             } else if (browserType.equalsIgnoreCase("edge")) {
-                setWebDriver(getConfiguredEdgeDriver());
+                configureEdgeDriver();
             } else if (browserType.equalsIgnoreCase("safari")) {
-                setWebDriver(getConfiguredSafariDriver());
+                configureSafariDriver();
             } else {
                 System.out.println("UNKNOWN DRIVER!");
             }
         } else {
             System.out.println("No driver specified, using default");
-            setWebDriver(getConfiguredChromeDriver());
+            configureChromeDriver();
         }
-
     }
 
-    private SafariDriver getConfiguredSafariDriver() {
-        SafariDriver driver = new SafariDriver();
+    private void configureSafariDriver() {
+        SafariOptions safariOptions = new SafariOptions();
+        safariOptions.setCapability("cleanSession", true);
+        SafariDriver safariDriver = new SafariDriver(safariOptions);
+        safariDriver.manage().window().maximize();
+        setWebDriver(safariDriver);
+    }
 
-        driver.manage().window().maximize();
-        return driver;
+    private void configureEdgeDriver() {
+        WebDriverManager.edgedriver().setup();
+        EdgeOptions edgeOptions = new EdgeOptions();
+        edgeOptions.setCapability("ms:inPrivate", true);
+        EdgeDriver edgeDriver = new EdgeDriver(edgeOptions);
+        edgeDriver.manage().window().maximize();
+        setWebDriver(edgeDriver);
+    }
+
+    private void configureIEDriver() {
+        WebDriverManager.iedriver().setup();
+        InternetExplorerOptions internetExplorerOptions = new InternetExplorerOptions();
+        internetExplorerOptions.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
+        InternetExplorerDriver internetExplorerDriver = new InternetExplorerDriver(internetExplorerOptions);
+        internetExplorerDriver.manage().window().maximize();
+        setWebDriver(internetExplorerDriver);
+    }
+
+    private void configureFirefoxDriver() {
+        WebDriverManager.firefoxdriver().setup();
+        FirefoxProfile firefoxProfile = new FirefoxProfile();
+        firefoxProfile.setPreference("browser.privatebrowsing.autostart", true);
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        firefoxOptions.setProfile(firefoxProfile);
+        FirefoxDriver firefoxDriver = new FirefoxDriver(firefoxOptions);
+        firefoxDriver.manage().window().maximize();
+        setWebDriver(firefoxDriver);
+    }
+
+    private void configureChromeDriver() {
+        WebDriverManager.chromedriver().setup();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("disable-infobars", "incognito");
+        ChromeDriver chromeDriver = new ChromeDriver(options);
+        chromeDriver.manage().window().maximize();
+        setWebDriver(chromeDriver);
     }
 
     @AfterSuite
     public void tearDown() {
         getWebDriver().quit();
-    }
-
-    private EdgeDriver getConfiguredEdgeDriver() {
-        WebDriverManager.edgedriver().setup();
-        EdgeDriver driver = new EdgeDriver();
-        driver.manage().window().maximize();
-        return driver;
-    }
-
-    private FirefoxDriver getConfiguredFirefoxDriver() {
-        WebDriverManager.firefoxdriver().setup();
-        FirefoxDriver firefoxDriver = new FirefoxDriver();
-        firefoxDriver.manage().window().maximize();
-        return firefoxDriver;
-    }
-
-    private InternetExplorerDriver getConfiguredIEDriver() {
-        WebDriverManager.iedriver().setup();
-        InternetExplorerDriver driver = new InternetExplorerDriver();
-        driver.manage().window().maximize();
-        return driver;
-    }
-
-    private ChromeDriver getConfiguredChromeDriver() {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("disable-infobars");
-        ChromeDriver driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
-        return driver;
     }
 }
