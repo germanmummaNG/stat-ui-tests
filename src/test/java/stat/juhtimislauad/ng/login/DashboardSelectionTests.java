@@ -1,6 +1,5 @@
 package stat.juhtimislauad.ng.login;
 
-import io.qameta.allure.Attachment;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
@@ -55,10 +54,5 @@ public class DashboardSelectionTests extends BaseTest {
                 .openMinistryOfSocialAffairsDashboard()
                 .getDashboardTitle();
         assertThat(dashboardTitle).isEqualTo(DASHBOARD_TITLE_MINISTRY_OF_SOCIAL_AFFAIRS);
-    }
-
-    @Attachment(value = "Page screenshot", type = "image/png")
-    public byte[] saveScreenshot(byte[] screenShot) {
-        return screenShot;
     }
 }
