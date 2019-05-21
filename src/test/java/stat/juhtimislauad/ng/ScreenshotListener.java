@@ -10,7 +10,7 @@ import org.testng.TestListenerAdapter;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 // The TestNG listener class
-public class ListenerClass extends TestListenerAdapter {
+public class ScreenshotListener extends TestListenerAdapter {
     @Attachment
     private byte[] captureScreenshot(WebDriver d) {
         return ((TakesScreenshot) d).getScreenshotAs(OutputType.BYTES);
