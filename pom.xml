@@ -6,13 +6,15 @@
 
     <groupId>stat.juhtimislauad.ng</groupId>
     <artifactId>stat-ui-tests</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1</version>
+    <name>Stat Dashboard UI Tests</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <allure.version>2.10.0</allure.version>
+        <allure.version>2.11.0</allure.version>
         <aspectj.version>1.9.2</aspectj.version>
+        <selenide.version>5.1.0</selenide.version>
         <browser/>
     </properties>
 
@@ -28,12 +30,12 @@
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
-            <version>5.2.2</version>
+            <version>${selenide.version}</version>
         </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>3.3.0</version>
+            <version>3.4.0</version>
         </dependency>
         <!-- Assertion -->
         <dependency>
@@ -52,13 +54,12 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-selenide</artifactId>
-            <version>2.10.0</version>
-            <scope>test</scope>
+            <version>${allure.version}</version>
         </dependency>
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
-            <version>2.9.0</version>
+            <version>${allure.version}</version>
         </dependency>
         <!-- Logging -->
         <dependency>

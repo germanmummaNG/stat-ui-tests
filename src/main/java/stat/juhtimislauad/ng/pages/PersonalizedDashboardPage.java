@@ -9,6 +9,10 @@ public class PersonalizedDashboardPage {
 
     private By dashboardTitle = By.cssSelector("#primaryNavbar > .navbar-start > .navbar-item");
 
+    public static PersonalizedDashboardPage getPersonalizedDashboardPage() {
+        return new PersonalizedDashboardPage();
+    }
+
     @Step("Get current dashboard title")
     public String getDashboardTitle() {
         return $(dashboardTitle).getText();

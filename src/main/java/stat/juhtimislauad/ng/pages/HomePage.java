@@ -12,13 +12,12 @@ public class HomePage {
 
     @Step("Open home page")
     public static HomePage goTo() {
-        open("https://arendus.juhtimislauad.stat.ee");
+        open("https://arendus.juhtimislauad.stat.ee/branches/develop");
         return new HomePage();
     }
 
     @Step("Login using DEV")
-    public DashboardSelectionPage loginUsingDev() {
+    public void loginUsingDev() {
         $(loginButton).click();
-        return new DashboardSelectionPage();
     }
 }

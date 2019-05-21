@@ -22,21 +22,21 @@ import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
 
 public class BaseTest {
 
-    private static final String browserType = System.getProperty("browser");
+    private static final String BROWSER_TYPE = System.getProperty("browser");
 
-    @BeforeSuite(alwaysRun = true)
+    @BeforeSuite
     public void setUp() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
-        if (browserType != null) {
-            if (browserType.equalsIgnoreCase("chrome")) {
+        if (BROWSER_TYPE != null) {
+            if (BROWSER_TYPE.equalsIgnoreCase("chrome")) {
                 configureChromeDriver();
-            } else if (browserType.equalsIgnoreCase("firefox")) {
+            } else if (BROWSER_TYPE.equalsIgnoreCase("firefox")) {
                 configureFirefoxDriver();
-            } else if (browserType.equalsIgnoreCase("ie")) {
+            } else if (BROWSER_TYPE.equalsIgnoreCase("ie")) {
                 configureIEDriver();
-            } else if (browserType.equalsIgnoreCase("edge")) {
+            } else if (BROWSER_TYPE.equalsIgnoreCase("edge")) {
                 configureEdgeDriver();
-            } else if (browserType.equalsIgnoreCase("safari")) {
+            } else if (BROWSER_TYPE.equalsIgnoreCase("safari")) {
                 configureSafariDriver();
             } else {
                 System.out.println("UNKNOWN DRIVER!");
@@ -96,5 +96,6 @@ public class BaseTest {
     @AfterSuite
     public void tearDown() {
         getWebDriver().quit();
+        SelenideLogger.removeListener("AllureSelenide");
     }
 }
