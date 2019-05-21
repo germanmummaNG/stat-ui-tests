@@ -1,5 +1,6 @@
 package stat.juhtimislauad.ng.dashboard;
 
+import com.codeborne.selenide.Configuration;
 import io.qameta.allure.Feature;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -26,6 +27,7 @@ public class DashboardSelectionTests extends BaseTest {
         HomePage.goTo().loginUsingDev();
         System.out.println("height: " + getWebDriver().manage().window().getSize().getHeight());
         System.out.println("width: " + getWebDriver().manage().window().getSize().getWidth());
+        System.out.println(Configuration.browserSize);
     }
 
     @Test(description = "Can select dashboard 'Turism'")
