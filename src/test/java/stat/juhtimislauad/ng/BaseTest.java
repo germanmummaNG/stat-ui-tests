@@ -16,6 +16,7 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import stat.juhtimislauad.ng.util.EnvironmentInformationUtil;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
@@ -45,6 +46,7 @@ public class BaseTest {
             System.out.println("No driver specified, using default");
             configureChromeDriver();
         }
+
     }
 
     private void configureSafariDriver() {
@@ -95,6 +97,7 @@ public class BaseTest {
 
     @AfterSuite
     public void tearDown() {
+        EnvironmentInformationUtil.createEnvironmentInformationPropertiesFile();
         getWebDriver().quit();
         SelenideLogger.removeListener("AllureSelenide");
     }
