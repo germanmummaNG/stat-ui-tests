@@ -35,13 +35,13 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>3.4.0</version>
+            <version>3.6.0</version>
         </dependency>
         <!-- Assertion -->
         <dependency>
             <groupId>com.google.truth</groupId>
             <artifactId>truth</artifactId>
-            <version>0.43</version>
+            <version>0.44</version>
             <scope>test</scope>
         </dependency>
         <dependency>
