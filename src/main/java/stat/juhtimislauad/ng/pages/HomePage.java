@@ -12,7 +12,7 @@ public class HomePage {
 
     @Step("Open home page")
     public static HomePage goTo() {
-        open("https://arendus.juhtimislauad.stat.ee/branches/develop");
+        open("https://arendus.juhtimislauad.stat.ee/branches/feature-sa0140-280/admin");
         return new HomePage();
     }
 

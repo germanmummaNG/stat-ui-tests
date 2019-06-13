@@ -30,7 +30,6 @@ public class WidgetDetailViewComponent {
     }
 
     public WidgetDetailViewComponent changeTimeFilterTo(String filterOption) {
-//        $$x("//div[contains(@class, 'react-select-container')]").last().click();
         $x("/preceding-sibling::div").click();
         $x("//div[text()='" + filterOption + "']").click();
         $x("//div[text()='" + filterOption + "']").parent().find("div");
