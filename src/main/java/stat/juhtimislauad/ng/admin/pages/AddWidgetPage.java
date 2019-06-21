@@ -1,8 +1,10 @@
 package stat.juhtimislauad.ng.admin.pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ex.ElementNotFound;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 import static com.codeborne.selenide.Condition.not;
 import static com.codeborne.selenide.Condition.visible;
@@ -91,7 +93,7 @@ public class AddWidgetPage {
     }
 
     public void clickSave() {
-        $(this.saveBtn).shouldBe(visible).click();
+        $(this.saveBtn).scrollTo().shouldBe(visible).click();
     }
 
     @Step("Select data source 'API'")
@@ -103,6 +105,18 @@ public class AddWidgetPage {
     @Step("Type cube code \"{cubeCode}\"")
     public AddWidgetPage typeCubeCode(String cubeCode) {
         $(this.cubeCode).scrollIntoView(true).setValue(cubeCode);
+        return this;
+    }
+
+    @Step("Widget save button is disabled")
+    public boolean saveButtonIsDisabled() {
+        return $(saveBtn).has(Condition.attribute("disabled"));
+    }
+
+    public AddWidgetPage clearWidgetShortNameEt() {
+        $(shortNameEt).click();
+        $(shortNameEt).sendKeys(Keys.chord(Keys.CONTROL, "a"));
+        $(shortNameEt).sendKeys(Keys.BACK_SPACE);
         return this;
     }
 }

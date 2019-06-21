@@ -28,7 +28,6 @@ public class BaseTest {
 
     @BeforeSuite
     public void setUp() {
-        System.out.println("BaseTest.setUp");
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
         setWebDriver();
         setBaseUrl(BASE_URL);
@@ -114,7 +113,6 @@ public class BaseTest {
 
     @AfterClass
     public void clearWebDriverSession() {
-        System.out.println("BaseTest.clearWebDriverSession");
         WebDriverRunner.getSelenideDriver().clearBrowserLocalStorage();
         WebDriverRunner.getSelenideDriver().clearCookies();
     }
