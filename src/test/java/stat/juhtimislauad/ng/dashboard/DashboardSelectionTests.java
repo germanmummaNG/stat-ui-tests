@@ -7,10 +7,11 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import stat.juhtimislauad.ng.BaseTest;
 import stat.juhtimislauad.ng.ScreenshotListener;
-import stat.juhtimislauad.ng.pages.HomePage;
 
 import static com.google.common.truth.Truth.assertThat;
+import static stat.juhtimislauad.ng.LoginPage.getLoginPage;
 import static stat.juhtimislauad.ng.pages.DashboardSelectionPage.getDashboardSelectionPage;
+import static stat.juhtimislauad.ng.pages.HomePage.getHomePage;
 
 @Feature("Can open different dashboards")
 @Listeners({ScreenshotListener.class})
@@ -22,7 +23,8 @@ public class DashboardSelectionTests extends BaseTest {
 
     @BeforeClass
     public void loginUsingDev() {
-        HomePage.goTo().loginUsingDev();
+        getHomePage().goTo();
+        getLoginPage().loginWithUser("german");
     }
 
     @Test(description = "Can select dashboard 'Turism'")
@@ -51,6 +53,6 @@ public class DashboardSelectionTests extends BaseTest {
 
     @AfterMethod
     public void goToHome() {
-        HomePage.goTo();
+        getHomePage().goTo();
     }
 }

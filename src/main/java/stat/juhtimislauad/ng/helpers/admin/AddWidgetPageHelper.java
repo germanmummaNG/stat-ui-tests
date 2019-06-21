@@ -16,7 +16,7 @@ public class AddWidgetPageHelper {
                 .fillLongNameEn("PIKK TEST EN")
                 .fillNumberOfLatestPeriods(5)
                 .fillTimePeriodStartWithFirstOption()
-                .fillTimePeriodEndWithFirstOption()
+                .fillTimePeriodEndWithLastOption()
                 .selectWidgetIsVisible();
     }
 }

@@ -1,6 +1,7 @@
 package stat.juhtimislauad.ng.admin.pages;
 
 import com.codeborne.selenide.ex.ElementNotFound;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Condition.not;
@@ -21,6 +22,7 @@ public class AddWidgetPage {
     private By saveBtn = By.cssSelector("button[type='submit']");
     private By dataSourceApi = By.cssSelector("input[value='API']");
     private By addGraphTypeLink = By.xpath("//a[contains(text(),'Lisa graafikutüüp')]");
+    private By cubeCode = By.name("cube");
 
     public boolean isAddGraphTypeLinkVisible() {
         try {
@@ -30,8 +32,6 @@ public class AddWidgetPage {
             return false;
         }
     }
-
-    private By cubeCode = By.name("cube");
 
     public static AddWidgetPage getAddWidgetPage() {
         return new AddWidgetPage();
@@ -57,11 +57,13 @@ public class AddWidgetPage {
         return this;
     }
 
+    @Step("Fill number of latest periods with \"{numberOfLatestPeriods}\"")
     public AddWidgetPage fillNumberOfLatestPeriods(int numberOfLatestPeriods) {
         $(this.numberOfLatestPeriods).setValue(String.valueOf(numberOfLatestPeriods));
         return this;
     }
 
+    @Step("Fill time period start with first option")
     public AddWidgetPage fillTimePeriodStartWithFirstOption() {
         $(this.timePeriodStart).click();
         $$("#time-period-start-date div[tabindex='-1']").first().click();
@@ -69,13 +71,15 @@ public class AddWidgetPage {
         return this;
     }
 
-    public AddWidgetPage fillTimePeriodEndWithFirstOption() {
+    @Step("Fill time period end with last option")
+    public AddWidgetPage fillTimePeriodEndWithLastOption() {
         $(this.timePeriodEnd).click();
         $$("#time-period-end-date div[tabindex='-1']").last().click();
         $$("#time-period-end-date div[tabindex='-1']").last().waitUntil(not(visible), 1000);
         return this;
     }
 
+    @Step("Select widget is visible")
     public AddWidgetPage selectWidgetIsVisible() {
         $$(this.widgetVisibilityCheckboxes).first();
         return this;
@@ -90,13 +94,15 @@ public class AddWidgetPage {
         $(this.saveBtn).shouldBe(visible).click();
     }
 
+    @Step("Select data source 'API'")
     public AddWidgetPage selectDataSourceAPI() {
         $(this.dataSourceApi).waitUntil(visible, 1000).click();
         return this;
     }
 
+    @Step("Type cube code \"{cubeCode}\"")
     public AddWidgetPage typeCubeCode(String cubeCode) {
-        $(this.cubeCode).setValue(cubeCode);
+        $(this.cubeCode).scrollIntoView(true).setValue(cubeCode);
         return this;
     }
 }

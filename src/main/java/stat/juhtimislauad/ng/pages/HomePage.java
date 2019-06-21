@@ -10,10 +10,14 @@ public class HomePage {
 
     private By loginButton = By.cssSelector("button.is-primary");
 
-    @Step("Open home page")
-    public static HomePage goTo() {
-        open("https://arendus.juhtimislauad.stat.ee/branches/feature-sa0140-280/admin");
+    public static HomePage getHomePage() {
         return new HomePage();
+    }
+
+    @Step("Open home page")
+    public HomePage goTo() {
+        open("/home");
+        return this;
     }
 
     @Step("Login using DEV")

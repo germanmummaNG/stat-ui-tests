@@ -6,12 +6,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
 import stat.juhtimislauad.ng.BaseTest;
-import stat.juhtimislauad.ng.pages.HomePage;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.google.common.truth.Truth.assertThat;
+import static stat.juhtimislauad.ng.LoginPage.getLoginPage;
 import static stat.juhtimislauad.ng.components.DashboardWidgetSelectionComponent.getDashboardWidgetSelectionComponent;
 import static stat.juhtimislauad.ng.components.WidgetThumbnailSectionComponent.getWidgetThumbnailSectionComponent;
+import static stat.juhtimislauad.ng.pages.HomePage.getHomePage;
 
 @Ignore
 @Feature("Date formats are correct in Estonian and English")
@@ -21,8 +22,8 @@ public class DateFormatTests extends BaseTest {
 
     @BeforeClass
     public void loginUsingDev() {
-        HomePage.goTo().loginUsingDev();
-        System.out.println(System.getProperty("webdriver.firefox.bin"));
+        getHomePage().goTo();
+        getLoginPage().loginWithUser("german");
     }
 
     @Test(description = "Widget title contains month with correct format")
@@ -74,7 +75,7 @@ public class DateFormatTests extends BaseTest {
 
     @AfterMethod
     public void returnHome() {
-        HomePage.goTo();
+        getHomePage().goTo();
     }
 
 }

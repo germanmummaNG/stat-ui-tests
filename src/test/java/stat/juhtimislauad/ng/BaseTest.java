@@ -1,5 +1,7 @@
 package stat.juhtimislauad.ng;
 
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -14,20 +16,29 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import stat.juhtimislauad.ng.util.EnvironmentInformationUtil;
 
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static com.codeborne.selenide.WebDriverRunner.setWebDriver;
-
 public class BaseTest {
 
     private static final String BROWSER_TYPE = System.getProperty("browser");
+    private static final String BASE_URL = "https://arendus.juhtimislauad.stat.ee/branches/develop";
 
     @BeforeSuite
     public void setUp() {
+        System.out.println("BaseTest.setUp");
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
+        setWebDriver();
+        setBaseUrl(BASE_URL);
+    }
+
+    public void setBaseUrl(String baseUrl) {
+        Configuration.baseUrl = baseUrl;
+    }
+
+    private void setWebDriver() {
         if (BROWSER_TYPE != null) {
             if (BROWSER_TYPE.equalsIgnoreCase("chrome")) {
                 configureChromeDriver();
@@ -46,7 +57,6 @@ public class BaseTest {
             System.out.println("No driver specified, using default");
             configureChromeDriver();
         }
-
     }
 
     private void configureSafariDriver() {
@@ -54,7 +64,7 @@ public class BaseTest {
         safariOptions.setCapability("cleanSession", true);
         SafariDriver safariDriver = new SafariDriver(safariOptions);
         safariDriver.manage().window().maximize();
-        setWebDriver(safariDriver);
+        WebDriverRunner.setWebDriver(safariDriver);
     }
 
     private void configureEdgeDriver() {
@@ -63,7 +73,7 @@ public class BaseTest {
         edgeOptions.setCapability("ms:inPrivate", true);
         EdgeDriver edgeDriver = new EdgeDriver(edgeOptions);
         edgeDriver.manage().window().maximize();
-        setWebDriver(edgeDriver);
+        WebDriverRunner.setWebDriver(edgeDriver);
     }
 
     private void configureIEDriver() {
@@ -72,7 +82,7 @@ public class BaseTest {
         internetExplorerOptions.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
         InternetExplorerDriver internetExplorerDriver = new InternetExplorerDriver(internetExplorerOptions);
         internetExplorerDriver.manage().window().maximize();
-        setWebDriver(internetExplorerDriver);
+        WebDriverRunner.setWebDriver(internetExplorerDriver);
     }
 
     private void configureFirefoxDriver() {
@@ -83,7 +93,7 @@ public class BaseTest {
         firefoxOptions.setProfile(firefoxProfile);
         FirefoxDriver firefoxDriver = new FirefoxDriver(firefoxOptions);
         firefoxDriver.manage().window().maximize();
-        setWebDriver(firefoxDriver);
+        WebDriverRunner.setWebDriver(firefoxDriver);
     }
 
     private void configureChromeDriver() {
@@ -92,13 +102,20 @@ public class BaseTest {
         options.addArguments("disable-infobars", "incognito");
         ChromeDriver chromeDriver = new ChromeDriver(options);
         chromeDriver.manage().window().maximize();
-        setWebDriver(chromeDriver);
+        WebDriverRunner.setWebDriver(chromeDriver);
     }
 
     @AfterSuite
     public void tearDown() {
         EnvironmentInformationUtil.createEnvironmentInformationPropertiesFile();
-        getWebDriver().quit();
         SelenideLogger.removeListener("AllureSelenide");
+        //getWebDriver().quit();
+    }
+
+    @AfterClass
+    public void clearWebDriverSession() {
+        System.out.println("BaseTest.clearWebDriverSession");
+        WebDriverRunner.getSelenideDriver().clearBrowserLocalStorage();
+        WebDriverRunner.getSelenideDriver().clearCookies();
     }
 }
