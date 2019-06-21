@@ -73,6 +73,12 @@
             <version>1.3.0-alpha4</version>
             <scope>runtime</scope>
         </dependency>
+        <!-- Test data providets -->
+        <dependency>
+            <groupId>com.github.javafaker</groupId>
+            <artifactId>javafaker</artifactId>
+            <version>0.17.2</version>
+        </dependency>
     </dependencies>
 
     <build>
