@@ -4,13 +4,13 @@ import io.qameta.allure.Feature;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import stat.juhtimislauad.ng.BaseTest;
-import stat.juhtimislauad.ng.admin.pages.AddWidgetPage;
 import stat.juhtimislauad.ng.admin.pages.AdminPage;
 import stat.juhtimislauad.ng.helpers.admin.AddWidgetPageHelper;
 
 import static com.google.common.truth.Truth.assertThat;
 import static stat.juhtimislauad.ng.LoginPage.getLoginPage;
 import static stat.juhtimislauad.ng.admin.components.AdminLeftMenuComponent.getAdminLeftMenu;
+import static stat.juhtimislauad.ng.admin.pages.AddWidgetPage.getAddWidgetPage;
 import static stat.juhtimislauad.ng.pages.HomePage.getHomePage;
 
 @Feature("Can delete widget by admin")
@@ -31,6 +31,13 @@ public class DeleteWidgetTests extends BaseTest {
                 .selectDataSourceAPI()
                 .typeCubeCode("Hodor");
 
-        assertThat(AddWidgetPage.getAddWidgetPage().isAddGraphTypeLinkVisible()).isTrue();
+        assertThat(getAddWidgetPage().isAddGraphTypeLinkVisible()).isTrue();
+    }
+
+    @Test
+    public void dropAllZapWidgets() {
+        getAdminLeftMenu()
+                .selectAllWidgets();
+
     }
 }

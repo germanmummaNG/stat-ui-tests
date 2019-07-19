@@ -16,28 +16,33 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.safari.SafariOptions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import stat.juhtimislauad.ng.util.EnvironmentInformationUtil;
 
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+
 public class BaseTest {
 
+    private static Logger logger = LoggerFactory.getLogger(BaseTest.class);
     private static final String BROWSER_TYPE = System.getProperty("browser");
     private static final String BASE_URL = "https://arendus.juhtimislauad.stat.ee/branches/develop";
 
     @BeforeSuite
-    public void setUp() {
+    public void setUp() throws Exception {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
         setWebDriver();
-        setBaseUrl(BASE_URL);
+        setBaseUrl();
     }
 
-    public void setBaseUrl(String baseUrl) {
-        Configuration.baseUrl = baseUrl;
+    private void setBaseUrl() {
+        Configuration.baseUrl = BASE_URL;
     }
 
-    private void setWebDriver() {
+    private void setWebDriver() throws Exception {
         if (BROWSER_TYPE != null) {
             if (BROWSER_TYPE.equalsIgnoreCase("chrome")) {
                 configureChromeDriver();
@@ -50,10 +55,11 @@ public class BaseTest {
             } else if (BROWSER_TYPE.equalsIgnoreCase("safari")) {
                 configureSafariDriver();
             } else {
-                System.out.println("UNKNOWN DRIVER!");
+                logger.error(String.format("UNKNOWN DRIVER SPECIFIED: %s", BROWSER_TYPE));
+                throw new Exception("Unknown driver specified!");
             }
         } else {
-            System.out.println("No driver specified, using default");
+            logger.info("No driver specified, using chrome");
             configureChromeDriver();
         }
     }
@@ -98,17 +104,10 @@ public class BaseTest {
     private void configureChromeDriver() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("disable-infobars", "incognito");
+        options.addArguments("disable-infobars", "incognito", "--headless");
         ChromeDriver chromeDriver = new ChromeDriver(options);
         chromeDriver.manage().window().maximize();
         WebDriverRunner.setWebDriver(chromeDriver);
-    }
-
-    @AfterSuite
-    public void tearDown() {
-        EnvironmentInformationUtil.createEnvironmentInformationPropertiesFile();
-        SelenideLogger.removeListener("AllureSelenide");
-        //getWebDriver().quit();
     }
 
     @AfterClass
@@ -116,4 +115,12 @@ public class BaseTest {
         WebDriverRunner.getSelenideDriver().clearBrowserLocalStorage();
         WebDriverRunner.getSelenideDriver().clearCookies();
     }
+
+    @AfterSuite
+    public void tearDown() {
+        EnvironmentInformationUtil.createEnvironmentInformationPropertiesFile();
+        SelenideLogger.removeListener("AllureSelenide");
+        getWebDriver().quit();
+    }
+
 }

@@ -2,6 +2,7 @@ package stat.juhtimislauad.ng.admin.components;
 
 import org.openqa.selenium.By;
 import stat.juhtimislauad.ng.admin.pages.AddWidgetPage;
+import stat.juhtimislauad.ng.admin.pages.AllWidgetsPage;
 
 import static com.codeborne.selenide.Selenide.$;
 
@@ -22,5 +23,10 @@ public class AdminLeftMenuComponent {
     public AddWidgetPage selectAddNewWidget() {
         $(this.addNewWidgetMenuItem).click();
         return new AddWidgetPage();
+    }
+
+    public AllWidgetsPage selectAllWidgets() {
+        $(this.allWidgetsMenuItem).click();
+        return new AllWidgetsPage();
     }
 }
