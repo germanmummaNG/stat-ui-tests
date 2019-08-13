@@ -104,7 +104,7 @@ public class BaseTest {
     private void configureChromeDriver() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("disable-infobars", "incognito", "--headless");
+        options.addArguments("disable-infobars", "incognito", "--headless", "--no-sandbox");
         ChromeDriver chromeDriver = new ChromeDriver(options);
         chromeDriver.manage().window().maximize();
         WebDriverRunner.setWebDriver(chromeDriver);
