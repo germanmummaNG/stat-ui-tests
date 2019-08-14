@@ -13,9 +13,15 @@ public class DashboardWidgetSelectionComponent {
         return new DashboardWidgetSelectionComponent();
     }
 
-    @Step("Select checkbox by widget short title")
-    public DashboardWidgetSelectionComponent selectWidgetByShortTitle(String widgetShortTitle) {
-        $(widgetCheckboxes).find(By.xpath("//label[contains(normalize-space(.), '" + widgetShortTitle + "')]")).click();
+    @Step("Select checkbox by widget short name")
+    public DashboardWidgetSelectionComponent selectWidgetByShortName(String widgetShortName) {
+        $(widgetCheckboxes).find(By.xpath("//label[contains(normalize-space(.), '" + widgetShortName + "')]")).click();
+        return this;
+    }
+
+    @Step("Select checkbox by domain name")
+    public DashboardWidgetSelectionComponent selectWidgetByDomainName(String domainName) {
+        $(domainCheckboxes).find(By.xpath("//label[contains(normalize-space(.), '" + domainName + "')]")).click();
         return this;
     }
 }

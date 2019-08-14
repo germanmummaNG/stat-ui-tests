@@ -4,8 +4,8 @@ import io.qameta.allure.Feature;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import stat.juhtimislauad.ng.BaseTest;
 import stat.juhtimislauad.ng.ScreenshotListener;
+import stat.juhtimislauad.ng.WebDriverConfiguration;
 import stat.juhtimislauad.ng.admin.pages.AdminPage;
 import stat.juhtimislauad.ng.helpers.admin.AddWidgetPageHelper;
 
@@ -17,7 +17,7 @@ import static stat.juhtimislauad.ng.pages.HomePage.getHomePage;
 
 @Feature("Can delete widget by admin")
 @Listeners({ScreenshotListener.class})
-public class DeleteWidgetTests extends BaseTest {
+public class DeleteWidgetTests extends WebDriverConfiguration {
 
     @BeforeClass
     public void loginAndOpenAdminPage() {

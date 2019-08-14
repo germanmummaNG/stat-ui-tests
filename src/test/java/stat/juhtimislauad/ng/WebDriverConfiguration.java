@@ -26,9 +26,9 @@ import stat.juhtimislauad.ng.util.EnvironmentInformationUtil;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-public class BaseTest {
+public class WebDriverConfiguration {
 
-    private static Logger logger = LoggerFactory.getLogger(BaseTest.class);
+    private static Logger logger = LoggerFactory.getLogger(WebDriverConfiguration.class);
     private static final String BROWSER_TYPE = System.getProperty("browser");
     private static final String BASE_URL = "https://arendus.juhtimislauad.stat.ee/branches/develop";
 

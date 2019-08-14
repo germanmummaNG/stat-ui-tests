@@ -5,7 +5,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Ignore;
 import org.testng.annotations.Test;
-import stat.juhtimislauad.ng.BaseTest;
+import stat.juhtimislauad.ng.WebDriverConfiguration;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.google.common.truth.Truth.assertThat;
@@ -16,7 +16,7 @@ import static stat.juhtimislauad.ng.pages.HomePage.getHomePage;
 
 @Ignore
 @Feature("Date formats are correct in Estonian and English")
-public class DateFormatTests extends BaseTest {
+public class DateFormatTests extends WebDriverConfiguration {
 
     private static final String DECEMBER_2018_ET = "detsember 2018";
 
@@ -32,7 +32,7 @@ public class DateFormatTests extends BaseTest {
         open("https://arendus.juhtimislauad.stat.ee/branches/develop/dashboard/3");
 
         getDashboardWidgetSelectionComponent()
-                .selectWidgetByShortTitle(widgetShortName);
+                .selectWidgetByShortName(widgetShortName);
 
         String widgetTitleWithFilterInfo = getWidgetThumbnailSectionComponent()
                 .openWidgetDetailViewByShortTitle(widgetShortName)
@@ -46,7 +46,7 @@ public class DateFormatTests extends BaseTest {
         String widgetShortName = "Registreeritud töötute arv";
         open("https://arendus.juhtimislauad.stat.ee/branches/develop/dashboard/3");
         getDashboardWidgetSelectionComponent()
-                .selectWidgetByShortTitle(widgetShortName);
+                .selectWidgetByShortName(widgetShortName);
 
         String widgetTitleWithFilterInfo = getWidgetThumbnailSectionComponent()
                 .openWidgetDetailViewByShortTitle(widgetShortName)

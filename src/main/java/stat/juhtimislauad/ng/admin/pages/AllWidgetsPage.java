@@ -18,11 +18,7 @@ public class AllWidgetsPage {
     @Step("Widget with name \"{widgetShortName}\" is displayed in table")
     public boolean widgetWithShortNameIsPresent(String widgetShortName) {
         String selector = "//a[contains(text(),'" + widgetShortName + "')]";
-//        if (selenideElements.size() > 1) {
-//            logger.error("Found more than 1 widget with name '{}'", widgetShortName);
-//            throw new TooManyElementsFoundException(selector);
-//        }
-        System.out.println(selector);
+        logger.debug(selector);
         return $x(selector).should(appear) != null;
     }
 }

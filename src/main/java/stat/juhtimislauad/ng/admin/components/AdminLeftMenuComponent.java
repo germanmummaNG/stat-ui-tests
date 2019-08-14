@@ -8,8 +8,6 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class AdminLeftMenuComponent {
 
-
-    //    private By addNewWidgetMenuItem = By.id("add-new-widget-link");
     private By addNewWidgetMenuItem = By.xpath("//a[contains(@href, 'admin/widgets/new')]");
     private By addNewDashboardMenuItem = By.id("add-new-dashboard-link");
     private By allDashboardNavMenu = By.id("all-dashboards-link");

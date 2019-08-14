@@ -7,6 +7,10 @@ import static stat.juhtimislauad.ng.admin.pages.AddWidgetPage.getAddWidgetPage;
 
 public class AddWidgetPageHelper {
 
+    private AddWidgetPageHelper() {
+        throw new IllegalStateException("Utility class");
+    }
+
     @Step("Fill widget form with default data")
     public static AddWidgetPage fillFormWithDefaultValues() {
         return getAddWidgetPage()

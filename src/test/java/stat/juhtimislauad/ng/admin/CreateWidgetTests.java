@@ -5,8 +5,8 @@ import io.qameta.allure.Feature;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import stat.juhtimislauad.ng.BaseTest;
 import stat.juhtimislauad.ng.ScreenshotListener;
+import stat.juhtimislauad.ng.WebDriverConfiguration;
 import stat.juhtimislauad.ng.admin.pages.AllWidgetsPage;
 
 import java.util.Locale;
@@ -20,7 +20,7 @@ import static stat.juhtimislauad.ng.pages.HomePage.getHomePage;
 
 @Feature("Can create widgets by admin")
 @Listeners({ScreenshotListener.class})
-public class CreateWidgetTests extends BaseTest {
+public class CreateWidgetTests extends WebDriverConfiguration {
 
     private static Faker faker = new Faker(new Locale("en-US"));
 
