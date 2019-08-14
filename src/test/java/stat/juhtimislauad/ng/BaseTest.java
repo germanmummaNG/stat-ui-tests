@@ -5,6 +5,7 @@ import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.selenide.AllureSelenide;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -62,13 +63,14 @@ public class BaseTest {
             logger.info("No driver specified, using chrome");
             configureChromeDriver();
         }
+        getWebDriver().manage().window().maximize();
+        getWebDriver().manage().window().setSize(new Dimension(1366, 768));
     }
 
     private void configureSafariDriver() {
         SafariOptions safariOptions = new SafariOptions();
         safariOptions.setCapability("cleanSession", true);
         SafariDriver safariDriver = new SafariDriver(safariOptions);
-        safariDriver.manage().window().maximize();
         WebDriverRunner.setWebDriver(safariDriver);
     }
 
@@ -77,7 +79,6 @@ public class BaseTest {
         EdgeOptions edgeOptions = new EdgeOptions();
         edgeOptions.setCapability("ms:inPrivate", true);
         EdgeDriver edgeDriver = new EdgeDriver(edgeOptions);
-        edgeDriver.manage().window().maximize();
         WebDriverRunner.setWebDriver(edgeDriver);
     }
 
@@ -86,7 +87,6 @@ public class BaseTest {
         InternetExplorerOptions internetExplorerOptions = new InternetExplorerOptions();
         internetExplorerOptions.setCapability(InternetExplorerDriver.IE_ENSURE_CLEAN_SESSION, true);
         InternetExplorerDriver internetExplorerDriver = new InternetExplorerDriver(internetExplorerOptions);
-        internetExplorerDriver.manage().window().maximize();
         WebDriverRunner.setWebDriver(internetExplorerDriver);
     }
 
@@ -97,7 +97,6 @@ public class BaseTest {
         FirefoxOptions firefoxOptions = new FirefoxOptions();
         firefoxOptions.setProfile(firefoxProfile);
         FirefoxDriver firefoxDriver = new FirefoxDriver(firefoxOptions);
-        firefoxDriver.manage().window().maximize();
         WebDriverRunner.setWebDriver(firefoxDriver);
     }
 
@@ -106,7 +105,6 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("disable-infobars", "incognito", "--headless", "--no-sandbox");
         ChromeDriver chromeDriver = new ChromeDriver(options);
-        chromeDriver.manage().window().maximize();
         WebDriverRunner.setWebDriver(chromeDriver);
     }
 
