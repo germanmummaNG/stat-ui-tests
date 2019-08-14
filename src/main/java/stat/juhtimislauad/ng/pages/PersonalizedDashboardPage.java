@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class PersonalizedDashboardPage {
 
-    private By dashboardTitle = By.cssSelector("#primaryNavbar > .navbar-start > .navbar-item");
+    private By breadcrumbs = By.cssSelector("#primaryNavbar a.breadcrumb");
 
     public static PersonalizedDashboardPage getPersonalizedDashboardPage() {
         return new PersonalizedDashboardPage();
@@ -15,6 +15,6 @@ public class PersonalizedDashboardPage {
 
     @Step("Get current dashboard title")
     public String getDashboardTitle() {
-        return $(dashboardTitle).getText();
+        return $(breadcrumbs).find("ul > li", 1).getText();
     }
 }
