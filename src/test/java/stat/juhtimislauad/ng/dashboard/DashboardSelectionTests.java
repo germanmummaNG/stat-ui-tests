@@ -3,7 +3,9 @@ package stat.juhtimislauad.ng.dashboard;
 import io.qameta.allure.Feature;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import stat.juhtimislauad.ng.ScreenshotListener;
 import stat.juhtimislauad.ng.WebDriverConfiguration;
 
 import static com.google.common.truth.Truth.assertThat;
@@ -12,6 +14,7 @@ import static stat.juhtimislauad.ng.pages.DashboardSelectionPage.getDashboardSel
 import static stat.juhtimislauad.ng.pages.HomePage.getHomePage;
 
 @Feature("Can open different dashboards")
+@Listeners(ScreenshotListener.class)
 public class DashboardSelectionTests extends WebDriverConfiguration {
 
     private static final String DASHBOARD_TITLE_TOURISM = "Turism";

@@ -3,8 +3,9 @@ package stat.juhtimislauad.ng.details_view;
 import io.qameta.allure.Feature;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Ignore;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import stat.juhtimislauad.ng.ScreenshotListener;
 import stat.juhtimislauad.ng.WebDriverConfiguration;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -14,8 +15,8 @@ import static stat.juhtimislauad.ng.components.DashboardWidgetSelectionComponent
 import static stat.juhtimislauad.ng.components.WidgetThumbnailSectionComponent.getWidgetThumbnailSectionComponent;
 import static stat.juhtimislauad.ng.pages.HomePage.getHomePage;
 
-@Ignore
 @Feature("Date formats are correct in Estonian and English")
+@Listeners({ScreenshotListener.class})
 public class DateFormatTests extends WebDriverConfiguration {
 
     private static final String DECEMBER_2018_ET = "detsember 2018";
