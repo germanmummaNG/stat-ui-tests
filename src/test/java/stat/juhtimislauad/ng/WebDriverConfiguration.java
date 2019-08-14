@@ -103,7 +103,7 @@ public class WebDriverConfiguration {
     private void configureChromeDriver() {
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("disable-infobars", "incognito", "--no-sandbox");
+        options.addArguments("disable-infobars", "incognito", "--headless", "--no-sandbox");
         ChromeDriver chromeDriver = new ChromeDriver(options);
         WebDriverRunner.setWebDriver(chromeDriver);
     }
