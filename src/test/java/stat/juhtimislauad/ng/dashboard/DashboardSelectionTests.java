@@ -32,7 +32,7 @@ public class DashboardSelectionTests extends WebDriverConfiguration {
         String dashboardTitle = getDashboardSelectionPage()
                 .openTourismDashboard()
                 .getDashboardTitle();
-        assertThat(dashboardTitle).isEqualTo(DASHBOARD_TITLE_TOURISM);
+        assertThat(dashboardTitle).startsWith(DASHBOARD_TITLE_TOURISM);
     }
 
     @Test(description = "Can select dashboard 'Piirkondlik statistika'")
@@ -40,7 +40,7 @@ public class DashboardSelectionTests extends WebDriverConfiguration {
         String dashboardTitle = getDashboardSelectionPage()
                 .openRegionalStatisticsDashboard()
                 .getDashboardTitle();
-        assertThat(dashboardTitle).isEqualTo(DASHBOARD_TITLE_REGIONAL_STATISTICS);
+        assertThat(dashboardTitle).startsWith(DASHBOARD_TITLE_REGIONAL_STATISTICS);
     }
 
     @Test(description = "Can select dashboard 'Ministry of Social Affairs'")
@@ -48,7 +48,7 @@ public class DashboardSelectionTests extends WebDriverConfiguration {
         String dashboardTitle = getDashboardSelectionPage()
                 .openMinistryOfSocialAffairsDashboard()
                 .getDashboardTitle();
-        assertThat(dashboardTitle).isEqualTo(DASHBOARD_TITLE_MINISTRY_OF_SOCIAL_AFFAIRS);
+        assertThat(dashboardTitle).startsWith(DASHBOARD_TITLE_MINISTRY_OF_SOCIAL_AFFAIRS);
     }
 
     @AfterMethod
