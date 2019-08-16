@@ -9,7 +9,6 @@ import stat.juhtimislauad.ng.ScreenshotListener;
 import stat.juhtimislauad.ng.WebDriverConfiguration;
 
 import static com.google.common.truth.Truth.assertThat;
-import static stat.juhtimislauad.ng.LoginPage.getLoginPage;
 import static stat.juhtimislauad.ng.pages.DashboardSelectionPage.getDashboardSelectionPage;
 import static stat.juhtimislauad.ng.pages.HomePage.getHomePage;
 
@@ -23,8 +22,9 @@ public class DashboardSelectionTests extends WebDriverConfiguration {
 
     @BeforeClass
     public void loginUsingDev() {
-        getHomePage().goTo();
-        getLoginPage().loginWithUser("german");
+        getHomePage()
+                .goTo()
+                .loginWithUser("german");
     }
 
     @Test(description = "Can select dashboard 'Turism'")

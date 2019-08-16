@@ -6,13 +6,12 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import stat.juhtimislauad.ng.ScreenshotListener;
 import stat.juhtimislauad.ng.WebDriverConfiguration;
-import stat.juhtimislauad.ng.admin.pages.AdminPage;
 import stat.juhtimislauad.ng.helpers.admin.AddWidgetPageHelper;
 
 import static com.google.common.truth.Truth.assertThat;
-import static stat.juhtimislauad.ng.LoginPage.getLoginPage;
 import static stat.juhtimislauad.ng.admin.components.AdminLeftMenuComponent.getAdminLeftMenu;
 import static stat.juhtimislauad.ng.admin.pages.AddWidgetPage.getAddWidgetPage;
+import static stat.juhtimislauad.ng.admin.pages.AdminPage.getAdminPage;
 import static stat.juhtimislauad.ng.pages.HomePage.getHomePage;
 
 @Feature("Can delete widget by admin")
@@ -21,9 +20,10 @@ public class DeleteWidgetTests extends WebDriverConfiguration {
 
     @BeforeClass
     public void loginAndOpenAdminPage() {
-        getHomePage().goTo();
-        getLoginPage().loginWithUser("admin");
-        AdminPage.getAdminPage().goTo();
+        getHomePage()
+                .goTo()
+                .loginWithUser("admin");
+        getAdminPage().goTo();
     }
 
     @Test

@@ -32,6 +32,9 @@ public class WebDriverConfiguration {
     private static final String BROWSER_TYPE = System.getProperty("browser");
     private static final String BASE_URL = "https://arendus.juhtimislauad.stat.ee/branches/develop";
 
+    private static final Integer WINDOW_WIDTH = 1920;
+    private static final Integer WINDOW_HEIGHT = 1080;
+
     @BeforeSuite
     public void setUp() throws Exception {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide().screenshots(true).savePageSource(false));
@@ -64,7 +67,7 @@ public class WebDriverConfiguration {
             configureChromeDriver();
         }
         getWebDriver().manage().window().maximize();
-        getWebDriver().manage().window().setSize(new Dimension(1366, 768));
+        getWebDriver().manage().window().setSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
     }
 
     private void configureSafariDriver() {

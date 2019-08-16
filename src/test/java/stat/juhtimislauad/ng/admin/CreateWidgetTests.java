@@ -12,7 +12,6 @@ import stat.juhtimislauad.ng.admin.pages.AllWidgetsPage;
 import java.util.Locale;
 
 import static com.google.common.truth.Truth.assertThat;
-import static stat.juhtimislauad.ng.LoginPage.getLoginPage;
 import static stat.juhtimislauad.ng.admin.components.AdminLeftMenuComponent.getAdminLeftMenu;
 import static stat.juhtimislauad.ng.admin.pages.AddWidgetPage.getAddWidgetPage;
 import static stat.juhtimislauad.ng.admin.pages.AdminPage.getAdminPage;
@@ -26,8 +25,9 @@ public class CreateWidgetTests extends WebDriverConfiguration {
 
     @BeforeClass
     public void loginAsAdmin() {
-        getHomePage().goTo();
-        getLoginPage().loginWithUser("admin");
+        getHomePage()
+                .goTo()
+                .loginWithUser("admin");
         getAdminPage().goTo();
     }
 
